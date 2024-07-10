@@ -3,7 +3,7 @@ import logging
 from flask import Flask, jsonify, render_template
 from datetime import datetime
 
-from api import api
+from api.api import get_greeting, get_opening_instructions
 
 
 logger = logging.getLogger(__name__)
@@ -24,12 +24,12 @@ def index():
 
 @app.route('/api/greeting', methods=['GET'])
 def greeting():
-    return jsonify(api.get_greeting())
+    return jsonify(get_greeting())
 
 
 @app.route('/api/opening_instructions', methods=['GET'])
 def opening_instructions():
-    return jsonify(api.get_opening_instructions())
+    return jsonify(get_opening_instructions())
 
 
 if __name__ == '__main__':
