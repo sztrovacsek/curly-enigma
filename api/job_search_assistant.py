@@ -8,9 +8,11 @@ I will interpret what you said with help of AI and recommend you occupations tha
 """
 
 
+# Endpoint: /api/greeting
 def get_greeting():
-    return {'content': "Hello", 'debug': "hardcoded"}
+    return {'content': "Hello, I am Deep Thought. I am an here to help you.", 'debug': "hardcoded"}
 
 
+# Endpoint: /api/opening_instructions
 def get_opening_instructions():
     return {'content': opening_instructions_html, 'debug': "hardcoded"}

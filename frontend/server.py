@@ -3,7 +3,7 @@ import logging
 from flask import Flask, jsonify, render_template
 from datetime import datetime
 
-from api.api import get_greeting, get_opening_instructions
+from api.job_search_assistant import get_greeting, get_opening_instructions
 
 
 logger = logging.getLogger(__name__)
