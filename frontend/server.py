@@ -1,9 +1,9 @@
 import logging
 
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from datetime import datetime
 
-from api.job_search_assistant import get_greeting, get_opening_instructions
+from api import job_search_assistant
 
 
 logger = logging.getLogger(__name__)
@@ -24,12 +24,25 @@ def index():
 
 @app.route('/api/greeting', methods=['GET'])
 def greeting():
-    return jsonify(get_greeting())
+    return jsonify(job_search_assistant.get_greeting())
 
 
 @app.route('/api/opening_instructions', methods=['GET'])
 def opening_instructions():
-    return jsonify(get_opening_instructions())
+    return jsonify(job_search_assistant.get_opening_instructions())
+
+
+@app.route('/api/send_message', methods=['POST'])
+def send_message():
+    try:
+        data = request.get_json()
+        user_input = data.get('user_input')
+        return jsonify(job_search_assistant.process_user_message(user_input))
+
+    except Exception as e:
+        logger.debug("Could not parse the input: %s", e)
+
+    return jsonify("[API error]")
 
 
 if __name__ == '__main__':
