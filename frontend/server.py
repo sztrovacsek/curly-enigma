@@ -37,7 +37,8 @@ def send_message():
     try:
         data = request.get_json()
         user_input = data.get('user_input')
-        return jsonify(job_search_assistant.process_user_message(user_input))
+        x = job_search_assistant.add_user_input(user_input)
+        return jsonify(x)
 
     except Exception as e:
         logger.debug("Could not parse the input: %s", e)
