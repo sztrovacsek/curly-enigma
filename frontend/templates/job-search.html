@@ -16,19 +16,31 @@
 
 <div class="container" style="background-color: #F0F0F0;">
 
-  <h2>Demo Frontend</h2>
-
-  <div class="row d-grid gap-2 col-6 mx-auto">
-    <div class="col-6 ">
-      <a class="btn btn-primary" href="/candidate">AI-powered input form</a>
+  <h5>(Demo frontend for the job search assistant API)</h5>
+  <h2>Job search assistant</h2>
+  <div class="row">
+    <div class="col-md-12">
+      <div id="greeting" style="display: none;">(loading...)</div>
     </div>
-    <div class="col-6">
-      <a class="btn btn-primary" href="/search">Job search assistant</a>
+  </div>
+
+  <div class="container">
+    <div class="container" id="chat-input" style="margin-top: 1em;">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" id="input-txt" placeholder="Type your message here" aria-label="User input" aria-describedby="button-send">
+            <button class="btn btn-primary" type="button" id="button-send">Submit</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="row">
-    <p></p>
+    <div class="col-md-12">
+      <p></p>
+    </div>
   </div>
 
 </div>
@@ -37,7 +49,6 @@
 <div class="container">
   <footer>
     <p>Rendered on: {{ render_time }}</p>
-    <p>Code last updated on: {{ last_update_time }} </p>
   </footer>
 </div>
 
