@@ -24,8 +24,3 @@ After deployment, you can reach it at a cloud url, something like:
 Note: before running `gcloud deploy` you need to authenticate yourself. To authenticate, run:
 
 `$gcloud auth login`
-
-```
-You are now logged in as [hannakollo@google.com].
-Your current project is [gic-sandbox-428315].  You can change this setting by running:
-```
