@@ -4,6 +4,7 @@ from flask import Flask, jsonify, render_template, request
 from datetime import datetime
 
 from api import job_search_assistant
+from api import  job_matching_service
 
 
 logger = logging.getLogger(__name__)
@@ -44,6 +45,21 @@ def send_message():
         data = request.get_json()
         user_input = data.get('user_input')
         x = job_search_assistant.add_user_input(user_input)
+        return jsonify(x)
+
+    except Exception as e:
+        logger.debug("Could not parse the input: %s", e)
+
+    return jsonify("[API error]")
+
+
+@app.route('/api/candidate_info', methods=['POST'])
+def process_candidate_info():
+    try:
+        data = request.get_json()
+        userid = data.get('userid')
+        job_preferences_nl = data.get('job_preferences').get('job_preferences_stroy')
+        x = job_matching_service.get_job_suggestions(userid, job_preferences_nl)
         return jsonify(x)
 
     except Exception as e:
