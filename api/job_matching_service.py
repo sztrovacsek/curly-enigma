@@ -8,18 +8,18 @@ logger = logging.getLogger(__name__)
 def job_suggestions():
     suggestions = [
         {
-            "JOB TITLE": "Cultural Event Assistant",
-            "DESCRIPTION": "Assist in organizing and executing cultural events, such as art exhibitions, concerts, "
+            "job_title": "Cultural Event Assistant",
+            "job_description": "Assist in organizing and executing cultural events, such as art exhibitions, concerts, "
                            "or theater performances. This role involves tasks like ticketing, coordinating "
                            "volunteers, and providing logistical support.",
-            "LINK": "https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?"
+            "link": "https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?"
         },
         {
-            "JOB TITLE": "Tour Guide",
-            "DESCRIPTION": "Lead tours for tourists and visitors, providing information and insights about the "
+            "job_title": "Tour Guide",
+            "job_description": "Lead tours for tourists and visitors, providing information and insights about the "
                            "history, art, and culture of Paris. Requires strong communication skills and knowledge of"
                            " the city.",
-            "LINK": "https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?"
+            "link": "https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?"
         },
     ]
     return suggestions

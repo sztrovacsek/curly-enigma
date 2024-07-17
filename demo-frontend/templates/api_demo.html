@@ -49,17 +49,13 @@
 
   <div id="suggestionContainer" style="display: none;">
     <h4>Here are some suggested occupations for you:</h4>
-    <div>
-      <b>Cultural Event Assistant</b>
-      <p>Assist in organizing and executing cultural events, such as art exhibitions, concerts, or theater performances. This role involves tasks like ticketing, coordinating volunteers, and providing logistical support.</p>
-      <p>Apply here: <a href="https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?" target="_blank">link to job posting</a></p>
+    <div id="jobTemplate">
+      <h5 class="jobTitle">Placeholder job</h5>
+      <p class="jobDescription">Assist in organizing and executing cultural events, such as art exhibitions, concerts, or theater performances. This role involves tasks like ticketing, coordinating volunteers, and providing logistical support.</p>
+      <p >Apply here: <a class="jobLink" href="https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?" target="_blank">link to job posting</a></p>
+      <p>&nbsp;</p>
     </div>
-    <div>
-      <b>Cultural Event Assistant</b>
-      <p>Assist in organizing and executing cultural events, such as art exhibitions, concerts, or theater performances. This role involves tasks like ticketing, coordinating volunteers, and providing logistical support.</p>
-      <p>Apply here: <a href="https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?" target="_blank">link to job posting</a></p>
-    </div>
-    <p>&nbsp;</p>
+</p>
   </div>
 
 </div>
@@ -94,23 +90,35 @@ function send_user_input() {
     console.log('Candidate input data is sent to the server. Response code: ' + response.status);
     button.style.color = "pink";
     if (!response.ok) {
-      throw new Error('API request failed with status: ${response.status}')
+      throw new Error('API request failed with status: ${response.status}');
     }
     return response.json();
   })
   .then(data => {
-    console.log('Data: ' + data)
-    show_results()
+    console.log('Data: ' + data);
+    console.log('Content: ' + data.content);
+    show_results(data.content);
   })
   .catch(error => {
-    console.error('Error: ', error)
+    console.error('Error: ', error);
   });
 };
 
-function show_results() {
-  const suggestionContainer = document.getElementById('suggestionContainer');
-  suggestionContainer.style.display = 'block'
-}
+function show_results(suggestion_list) {
+  const containerNode = document.getElementById('suggestionContainer');
+  const jobTemplateNode = document.getElementById('jobTemplate');
+
+  suggestion_list.forEach(job => {
+    console.log('Job:' + job.job_title);
+    const jobDiv = jobTemplateNode.cloneNode(true);
+    jobDiv.querySelector('.jobTitle').textContent = job.job_title;
+    jobDiv.querySelector('.jobDescription').textContent = job.job_description;
+    jobDiv.querySelector('.jobLink').textContent = job.link;
+    containerNode.appendChild(jobDiv);
+  });
+  jobTemplateNode.style.display = 'none';
+  containerNode.style.display = 'block';
+  }
 
 // Add a click event listener to the send button.
 button.addEventListener('click', () => {
