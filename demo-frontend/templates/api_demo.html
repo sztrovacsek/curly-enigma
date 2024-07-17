@@ -47,6 +47,21 @@
   </form>
   <p>&nbsp;</p>
 
+  <div id="suggestionContainer" style="display: none;">
+    <h4>Here are some suggested occupations for you:</h4>
+    <div>
+      <b>Cultural Event Assistant</b>
+      <p>Assist in organizing and executing cultural events, such as art exhibitions, concerts, or theater performances. This role involves tasks like ticketing, coordinating volunteers, and providing logistical support.</p>
+      <p>Apply here: <a href="https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?" target="_blank">link to job posting</a></p>
+    </div>
+    <div>
+      <b>Cultural Event Assistant</b>
+      <p>Assist in organizing and executing cultural events, such as art exhibitions, concerts, or theater performances. This role involves tasks like ticketing, coordinating volunteers, and providing logistical support.</p>
+      <p>Apply here: <a href="https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?" target="_blank">link to job posting</a></p>
+    </div>
+    <p>&nbsp;</p>
+  </div>
+
 </div>
 
 <div class="container">
@@ -85,12 +100,17 @@ function send_user_input() {
   })
   .then(data => {
     console.log('Data: ' + data)
+    show_results()
   })
   .catch(error => {
     console.error('Error: ', error)
   });
 };
 
+function show_results() {
+  const suggestionContainer = document.getElementById('suggestionContainer');
+  suggestionContainer.style.display = 'block'
+}
 
 // Add a click event listener to the send button.
 button.addEventListener('click', () => {
