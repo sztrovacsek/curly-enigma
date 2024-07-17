@@ -95,6 +95,7 @@ function send_user_input() {
 // Add a click event listener to the send button.
 button.addEventListener('click', () => {
   console.log("Button clicked");
+  event.preventDefault()
   send_user_input();
 });
 
