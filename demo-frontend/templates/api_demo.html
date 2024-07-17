@@ -71,7 +71,7 @@ function send_user_input() {
   fetch('api/candidate_info_instant', {
     method: 'POST',
     headers: {'Content-Type': 'application/json' },
-    body: JSON.stringify({ userid: "user42" }),
+    body: JSON.stringify({userid: "user42", occupations: [{name: "occupation1", description: inputElement.value}] }),
   })
   .then(response => {
     console.log('Candidate input data is sent to the server. Response code: ' + response.status);

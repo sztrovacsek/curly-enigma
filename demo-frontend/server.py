@@ -32,11 +32,11 @@ def process_candidate_info():
     try:
         data = request.get_json()
         userid = data.get('userid')
-        job_preferences_nl = data.get('job_preferences').get('job_preferences_story')
-        job_matching_service.store_user_info(userid, job_preferences_nl)
-        result = job_matching_service.get_job_suggestions(userid, job_preferences_nl)
+        occupation = data.get('occupations')[0]
+        job_matching_service.store_user_info(userid, occupation['description'])
+        result = job_matching_service.get_job_suggestions(userid, occupation['description'])
         logger.debug(f"Jobs matched: {result}")
-        return jsonify("OK")
+        return jsonify(result)
     except Exception as e:
         logger.debug("Could not process the input: %s", e)
         return jsonify(f"[API error]: {e}")
