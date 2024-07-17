@@ -15,12 +15,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_index()
+    return render_template('index.html', last_update_time="Jul 17",
+                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
 @app.route('/candidate')
-def candidate_input():
-    return render_candidate_input_form()
+def candidate_input_form():
+    return render_template('candidate-input.html',
+                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
 @app.route('/api/candidate_info_instant', methods=['POST'])
@@ -83,16 +85,6 @@ def send_message():
         logger.debug("Could not parse the input: %s", e)
 
     return jsonify("[API error]")
-
-
-def render_index():
-    return render_template('index.html', last_update_time="Jul 15",
-                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-
-
-def render_candidate_input_form():
-    return render_template('candidate-input.html',
-                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
 if __name__ == '__main__':
