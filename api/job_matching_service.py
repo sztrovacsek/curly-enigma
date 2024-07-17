@@ -30,13 +30,13 @@ def store_user_info(userid: str, data: dict):
     return {'content': 'OK',
             'meta': {
                 'reply_to': userid,
-                'debug': "Data will be persisted on this request. For now, it's not persisted."
+                'debug': "Data will be persisted on this request. (In this version: it's not persisted.)"
             }}
 
 
 def get_job_suggestions(userid: str, job_preferences_nl: str):
     # TODO: get the data for this user (from the storage)
-    # TODO: perform the job matching for real
+    # TODO: perform the job matching for real (in this version: it is hardcoded)
     return {'content': job_suggestions(),
             'meta': {
                 'reply_to': userid,

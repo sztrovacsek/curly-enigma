@@ -18,10 +18,12 @@ def index():
     return render_template('index.html', last_update_time="Jul 17",
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
+# ---- Endpoints for the API demo below --------------------------------------------------------------------------------
 
-@app.route('/candidate')
-def candidate_input_form():
-    return render_template('candidate-input.html',
+
+@app.route('/api-demo')
+def api_demo_form():
+    return render_template('api_demo.html',
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
@@ -56,6 +58,13 @@ def submit_candidate_info():
 
     return jsonify("[API error]")
 
+# ---- Endpoints for the API demo until here ---------------------------------------------------------------------------
+
+
+@app.route('/candidate')
+def candidate_input_form():
+    return render_template('candidate-input.html',
+                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 @app.route('/search')
 def job_search():
