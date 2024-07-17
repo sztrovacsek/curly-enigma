@@ -33,7 +33,9 @@
   <p>&nbsp;</p>
   <h4>Describe to me, in free form text, what was your last job...</h4>
   <p>For example:</p>
-  <p>I am looking for an entry level job in Paris. I finished high school last year. Since then I had part time jobs in a book shop, selling books. Now I am looking for a full time jobs, preferably something related to culture. I don't have a university degree but I think I am good at communication.</p>
+  <p>
+    I don't have much work experience since I only finished high school last year. Since then, I had a part-time job in a bookshop, selling books.
+    My responsibilities were: handling the new books that arrived, sorting them and putting onto the shelf when I was asked to. This was in Lyon.</p>
   <form>
     <div class="form-group">
       <textarea class="form-control" id="free-form-descr" rows="5" placeholder="" required></textarea>
@@ -75,7 +77,7 @@ function send_user_input() {
   })
   .then(response => {
     console.log('Candidate input data is sent to the server. Response code: ' + response.status);
-    button.style.color = "white";
+    button.style.color = "pink";
     if (!response.ok) {
       throw new Error('API request failed with status: ${response.status}')
     }
