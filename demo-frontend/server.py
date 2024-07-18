@@ -27,8 +27,9 @@ def api_demo_form():
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
+# TODO: remove this temporary endpoint
 @app.route('/api/candidate_info_instant', methods=['POST'])
-def process_candidate_info():
+def submit_and_process_candidate_info():
     try:
         data = request.get_json()
         userid = data.get('userid')
@@ -49,14 +50,24 @@ def submit_candidate_info():
     try:
         data = request.get_json()
         userid = data.get('userid')
-        job_preferences_nl = data.get('job_preferences').get('job_preferences_story')
-        result = job_matching_service.store_user_info(userid, job_preferences_nl)
+        # Get job suggestions based on the free form description of the first occupation
+        # Note that this is logic a stub. When fully implemented, it will take the input from all occupations.
+        occupation = data.get('occupations')[0]
+        result = job_matching_service.store_user_info(userid, occupation['description'])
         return jsonify(result)
     except Exception as e:
         logger.debug("Could not process the input: %s", e)
         return jsonify(f"[API error]: {e}")
 
     return jsonify("[API error]")
+
+
+@app.route('/api/job_suggestions', methods=['GET'])
+def get_job_suggestions():
+    # TODO: get the real user id and remove the job_preferences_nl param
+    result = job_matching_service.get_job_suggestions(userid="user42", job_preferences_nl="")
+    logger.debug(f"Jobs matched: {result}")
+    return jsonify(result)
 
 # ---- Endpoints for the API demo until here ---------------------------------------------------------------------------
 

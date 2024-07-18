@@ -26,6 +26,7 @@ def job_suggestions():
     return suggestions
 
 
+# Recommended endpoint: /api/candidate_info (POST request)
 def store_user_info(userid: str, data: dict):
     # TODO: save the data for this user (to the storage)
     return {'content': 'OK',
@@ -35,6 +36,7 @@ def store_user_info(userid: str, data: dict):
             }}
 
 
+# Recommended endpoint: /api/job_suggestions (GET request)
 def get_job_suggestions(userid: str, job_preferences_nl: str):
     # TODO: get the data for this user (from the storage)
     # TODO: perform the job matching for real (in this version: it is hardcoded)
