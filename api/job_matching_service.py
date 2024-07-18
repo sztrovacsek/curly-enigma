@@ -1,4 +1,5 @@
 import logging
+import time
 
 
 logger = logging.getLogger(__name__)
@@ -37,6 +38,7 @@ def store_user_info(userid: str, data: dict):
 def get_job_suggestions(userid: str, job_preferences_nl: str):
     # TODO: get the data for this user (from the storage)
     # TODO: perform the job matching for real (in this version: it is hardcoded)
+    time.sleep(1)
     return {'content': job_suggestions(),
             'meta': {
                 'reply_to': userid,
