@@ -30,7 +30,7 @@ def job_suggestions():
 def get_job_suggestions(userid: str, job_preferences_nl: str):
     # TODO: get the data for this user (from the storage)
     # TODO: perform the job matching for real (in this version: it is hardcoded)
-    time.sleep(1)
+    time.sleep(0.5)
     return {'content': job_suggestions(),
             'meta': {
                 'reply_to': userid,

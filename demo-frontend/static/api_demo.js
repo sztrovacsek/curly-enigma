@@ -2,6 +2,12 @@
 
 /* -------- Handling the "Save" button -------- */
 
+const saveButton = document.getElementById('button-save-candidate-input');
+
+// Add a click event listener to the save button.
+saveButton.addEventListener('click', () => {
+  event.preventDefault()
+});
 
 /* -------- Handling the "Find matching jobs" button -------- */
 
@@ -53,16 +59,8 @@ function show_results(suggestion_list) {
 
 // Add a click event listener to the jobs button.
 jobsButton.addEventListener('click', () => {
-  console.log("Button clicked");
   event.preventDefault()
   send_user_input();
-});
-
-// Add "press Enter" listener to the input box
-inputElement.addEventListener('keydown', function(event) {
-  if (event.key === "Enter") {
-    send_user_input()
-  }
 });
 
 /* -------- Handling the "Identify my skills" button -------- */
@@ -71,7 +69,6 @@ const skillButton = document.getElementById('button-identify-skills');
 
 // Add a click event listener to the skill button.
 skillButton.addEventListener('click', () => {
-  console.log("Skill button clicked");
   event.preventDefault()
 });
 
