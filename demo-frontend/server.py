@@ -27,12 +27,22 @@ def api_demo_form():
 
 
 @app.route('/api/candidate_info', methods=['POST'])
-def submit_candidate_info():
+def post_candidate_info():
     try:
         data = request.get_json()
         userid = data.get('userid')
         occupations = data.get('occupations')
         response = candidate_data.store_candidate_info(userid, occupations)
+        return jsonify(response)
+    except Exception as e:
+        logger.debug("Could not process the input: %s", e)
+        return jsonify(f"[API error]: {e}")
+
+
+@app.route('/api/candidate_info/<userid>', methods=['GET'])
+def get_candidate_info(userid: str):
+    try:
+        response = candidate_data.get_candidate_info(userid)
         return jsonify(response)
     except Exception as e:
         logger.debug("Could not process the input: %s", e)

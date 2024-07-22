@@ -37,7 +37,7 @@ function post_user_input() {
     return response.json();
   })
   .then(data => {
-    console.log('Debug: ' + data.meta.debug);
+    console.log('Response: meta.debug: ' + data.meta.debug);
     console.log('Content: ' + data.content);
   })
   .catch(error => {
