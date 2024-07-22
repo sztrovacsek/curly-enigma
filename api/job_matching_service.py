@@ -26,9 +26,6 @@ def job_suggestions():
     return suggestions
 
 
-
-
-
 # Recommended endpoint: /api/job_suggestions (GET request)
 def get_job_suggestions(userid: str, job_preferences_nl: str):
     # TODO: get the data for this user (from the storage)

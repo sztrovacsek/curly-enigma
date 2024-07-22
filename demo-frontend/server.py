@@ -34,7 +34,7 @@ def submit_and_process_candidate_info():
         data = request.get_json()
         userid = data.get('userid')
         occupation = data.get('occupations')[0]
-        candidate_data.store_user_info(userid, occupation['description'])
+        candidate_data.store_candidate_info(userid, occupation['description'])
         result = job_matching_service.get_job_suggestions(userid, occupation['description'])
         logger.debug(f"Jobs matched: {result}")
         return jsonify(result)
@@ -77,34 +77,11 @@ def candidate_input_form():
     return render_template('candidate-input.html',
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
+
 @app.route('/search')
 def job_search():
     return render_template('job-search.html',
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-
-
-@app.route('/api/greeting', methods=['GET'])
-def greeting():
-    return jsonify(job_search_assistant.get_greeting())
-
-
-@app.route('/api/opening_instructions', methods=['GET'])
-def opening_instructions():
-    return jsonify(job_search_assistant.get_opening_instructions())
-
-
-@app.route('/api/send_message', methods=['POST'])
-def send_message():
-    try:
-        data = request.get_json()
-        user_input = data.get('user_input')
-        x = job_search_assistant.add_user_input(user_input)
-        return jsonify(x)
-
-    except Exception as e:
-        logger.debug("Could not parse the input: %s", e)
-
-    return jsonify("[API error]")
 
 
 if __name__ == '__main__':
