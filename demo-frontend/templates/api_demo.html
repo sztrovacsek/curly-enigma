@@ -31,24 +31,50 @@
     </div>
   </form>
   <p>&nbsp;</p>
-  <h4>Describe to me, in free form text, what was your last job...</h4>
+  <h4>Let's start by listing all your past experiences</h4>
   <p>For example:</p>
   <p>
     I don't have much work experience since I only finished high school last year. Since then, I had a part-time job in a bookshop, selling books.
     My responsibilities were: handling the new books that arrived, sorting them and putting onto the shelf when I was asked to. This was in Lyon.</p>
+  <h5>Work Experience 1</h5>
   <form>
     <div class="form-group">
-      <textarea class="form-control" id="free-form-descr" rows="5" placeholder="" required></textarea>
+      <textarea class="form-control" id="free-form-descr-e1" rows="5" placeholder="" required></textarea>
+    </div>
+  </form>
+  <h5>Work Experience 2</h5>
+  <form>
+    <div class="form-group">
+      <textarea class="form-control" id="free-form-descr-e2" rows="5" placeholder="" required></textarea>
+    </div>
+  </form>
+  <h5>Work Experience 3</h5>
+  <form>
+    <div class="form-group">
+      <textarea class="form-control" id="free-form-descr-e3" rows="5" placeholder="" required></textarea>
+    </div>
+  </form>
+  <p>&nbsp;</p>
+  <h5>Other relevant experiences outside formal work (volunteering, informal work, care work for family members, etc.)</h5>
+  <p>Mention anything that demonstrate your skills that might be relevant for an employer)</p>
+  <form>
+    <div class="form-group">
+      <textarea class="form-control" id="free-form-descr-e4" rows="5" placeholder="" required></textarea>
     </div>
   </form>
 
   <form>
-    <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-send">Process it!</button>
+    <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-identify-skills">Identify my skills</button>
+  </form>
+  <p>&nbsp;</p>
+
+  <form>
+    <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-find-jobs">Find matching jobs</button>
   </form>
   <p>&nbsp;</p>
 
   <div id="suggestionContainer" style="display: none;">
-    <h4>Here are some suggested occupations for you:</h4>
+    <h4>Here are our suggested jobs for you:</h4>
     <div id="jobTemplate">
       <h5 class="jobTitle">Placeholder job</h5>
       <p class="jobDescription">Assist in organizing and executing cultural events, such as art exhibitions, concerts, or theater performances. This role involves tasks like ticketing, coordinating volunteers, and providing logistical support.</p>
@@ -72,10 +98,8 @@
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script>
 
-const button = document.getElementById('button-send');
-const inputElement = document.getElementById('free-form-descr');
-
-console.log("Hello");
+const button = document.getElementById('button-find-jobs');
+const inputElement = document.getElementById('free-form-descr-e1');
 
 function send_user_input() {
   console.log("Sending '" + inputElement.value + "' to the server...");
@@ -134,6 +158,16 @@ inputElement.addEventListener('keydown', function(event) {
   }
 });
 
+</script>
+
+<script>
+const skillButton = document.getElementById('button-identify-skills');
+
+// Add a click event listener to the send button.
+skillButton.addEventListener('click', () => {
+  console.log("Skill button clicked");
+  event.preventDefault()
+});
 </script>
 
 </html>
