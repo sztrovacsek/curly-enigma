@@ -4,7 +4,8 @@ from flask import Flask, jsonify, render_template, request
 from datetime import datetime
 
 from api import candidate_data
-from api import  job_matching_service
+from api import job_matching_service
+from api import skill_identification_service
 
 
 logger = logging.getLogger(__name__)
@@ -17,8 +18,6 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', last_update_time="Jul 17",
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-
-# ---- Endpoints for the API demo below --------------------------------------------------------------------------------
 
 
 @app.route('/api-demo')
@@ -68,20 +67,6 @@ def get_job_suggestions():
     result = job_matching_service.get_job_suggestions(userid="user42", job_preferences_nl="")
     logger.debug(f"Jobs matched: {result}")
     return jsonify(result)
-
-# ---- Endpoints for the API demo until here ---------------------------------------------------------------------------
-
-
-@app.route('/candidate')
-def candidate_input_form():
-    return render_template('candidate-input.html',
-                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-
-
-@app.route('/search')
-def job_search():
-    return render_template('job-search.html',
-                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
 if __name__ == '__main__':
