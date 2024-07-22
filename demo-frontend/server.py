@@ -26,39 +26,17 @@ def api_demo_form():
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
-# TODO: remove this temporary endpoint
-@app.route('/api/candidate_info_instant', methods=['POST'])
-def submit_and_process_candidate_info():
-    try:
-        data = request.get_json()
-        userid = data.get('userid')
-        occupation = data.get('occupations')[0]
-        candidate_data.store_candidate_info(userid, occupation['description'])
-        result = job_matching_service.get_job_suggestions(userid, occupation['description'])
-        logger.debug(f"Jobs matched: {result}")
-        return jsonify(result)
-    except Exception as e:
-        logger.debug("Could not process the input: %s", e)
-        return jsonify(f"[API error]: {e}")
-
-    return jsonify("[API error]")
-
-
 @app.route('/api/candidate_info', methods=['POST'])
 def submit_candidate_info():
     try:
         data = request.get_json()
         userid = data.get('userid')
-        # Get job suggestions based on the free form description of the first occupation
-        # Note that this is logic a stub. When fully implemented, it will take the input from all occupations.
-        occupation = data.get('occupations')[0]
-        result = job_matching_service.store_user_info(userid, occupation['description'])
-        return jsonify(result)
+        occupations = data.get('occupations')
+        response = candidate_data.store_candidate_info(userid, occupations)
+        return jsonify(response)
     except Exception as e:
         logger.debug("Could not process the input: %s", e)
         return jsonify(f"[API error]: {e}")
-
-    return jsonify("[API error]")
 
 
 @app.route('/api/job_suggestions', methods=['GET'])

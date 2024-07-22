@@ -3,28 +3,61 @@
 /* -------- Handling the "Save" button -------- */
 
 const saveButton = document.getElementById('button-save-candidate-input');
+const inputElement1 = document.getElementById('free-form-descr-e1');
+const inputElement2 = document.getElementById('free-form-descr-e2');
+const inputElement3 = document.getElementById('free-form-descr-e3');
 
 // Add a click event listener to the save button.
 saveButton.addEventListener('click', () => {
-  event.preventDefault()
+console.log("Save button is clicked")
+  event.preventDefault();
+  post_user_input();
 });
+
+function post_user_input() {
+  console.log("Sending '" + inputElement1.value + "' to the server...");
+  occupations = [
+    {name: "occupation1", description: inputElement1.value},
+    {name: "occupation2", description: inputElement2.value},
+    {name: "occupation3", description: inputElement3.value},
+  ]
+  saveButton.style.color = "grey";
+
+  fetch('api/candidate_info', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json' },
+    body: JSON.stringify({userid: "user42", occupations: occupations }),
+  })
+  .then(response => {
+    console.log('Candidate input data is sent to the server. Response code: ' + response.status);
+    saveButton.style.color = "pink";
+    if (!response.ok) {
+      throw new Error('API request failed with status: ${response.status}');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Debug: ' + data.meta.debug);
+    console.log('Content: ' + data.content);
+  })
+  .catch(error => {
+    console.error('Error: ', error);
+  });
+};
+
 
 /* -------- Handling the "Find matching jobs" button -------- */
 
 const jobsButton = document.getElementById('button-find-jobs');
-const inputElement = document.getElementById('free-form-descr-e1');
 
-function send_user_input() {
-  console.log("Sending '" + inputElement.value + "' to the server...");
+function get_suggested_jobs() {
   jobsButton.style.color = "grey";
 
-  fetch('api/candidate_info_instant', {
-    method: 'POST',
+  fetch('api/job_suggestions', {
+    method: 'GET',
     headers: {'Content-Type': 'application/json' },
-    body: JSON.stringify({userid: "user42", occupations: [{name: "occupation1", description: inputElement.value}] }),
   })
   .then(response => {
-    console.log('Candidate input data is sent to the server. Response code: ' + response.status);
     jobsButton.style.color = "pink";
     if (!response.ok) {
       throw new Error('API request failed with status: ${response.status}');
@@ -59,8 +92,8 @@ function show_results(suggestion_list) {
 
 // Add a click event listener to the jobs button.
 jobsButton.addEventListener('click', () => {
-  event.preventDefault()
-  send_user_input();
+  event.preventDefault();
+  get_suggested_jobs();
 });
 
 /* -------- Handling the "Identify my skills" button -------- */

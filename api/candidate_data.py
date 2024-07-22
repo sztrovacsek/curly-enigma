@@ -11,5 +11,5 @@ def store_candidate_info(userid: str, data: dict):
     return {'content': 'OK',
             'meta': {
                 'reply_to': userid,
-                'debug': "Data will be persisted on this request. (In this version: it's not persisted.)"
+                'debug': "Data successfully saved. [Stub: not persisted]"
             }}
