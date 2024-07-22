@@ -27,7 +27,7 @@ def job_suggestions():
 
 
 # Recommended endpoint: /api/job_suggestions (GET request)
-def get_job_suggestions(userid: str, job_preferences_nl: str):
+def get_job_suggestions(userid: str):
     # TODO: get the data for this user (from the storage)
     # TODO: perform the job matching for real (in this version: it is hardcoded)
     time.sleep(0.5)

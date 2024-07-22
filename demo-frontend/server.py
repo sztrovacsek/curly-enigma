@@ -39,9 +39,10 @@ def post_candidate_info():
         return jsonify(f"[API error]: {e}")
 
 
-@app.route('/api/candidate_info/<userid>', methods=['GET'])
-def get_candidate_info(userid: str):
+@app.route('/api/candidate_info/', methods=['GET'])
+def get_candidate_info():
     try:
+        userid = request.args.get('userid')
         response = candidate_data.get_candidate_info(userid)
         return jsonify(response)
     except Exception as e:
@@ -49,12 +50,18 @@ def get_candidate_info(userid: str):
         return jsonify(f"[API error]: {e}")
 
 
-@app.route('/api/job_suggestions', methods=['GET'])
+@app.route('/api/job_suggestions/', methods=['GET'])
 def get_job_suggestions():
-    # TODO: get the real user id and remove the job_preferences_nl param
-    result = job_matching_service.get_job_suggestions(userid="user42", job_preferences_nl="")
+    userid = request.args.get('userid')
+    result = job_matching_service.get_job_suggestions(userid=userid)
     logger.debug(f"Jobs matched: {result}")
     return jsonify(result)
+
+
+@app.route('/api-raw')
+def api_raw():
+    return render_template('api_raw.html',
+                           render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
 if __name__ == '__main__':
