@@ -3,7 +3,7 @@ import logging
 from flask import Flask, jsonify, render_template, request
 from datetime import datetime
 
-from api import job_search_assistant
+from api import candidate_data
 from api import  job_matching_service
 
 
@@ -34,7 +34,7 @@ def submit_and_process_candidate_info():
         data = request.get_json()
         userid = data.get('userid')
         occupation = data.get('occupations')[0]
-        job_matching_service.store_user_info(userid, occupation['description'])
+        candidate_data.store_user_info(userid, occupation['description'])
         result = job_matching_service.get_job_suggestions(userid, occupation['description'])
         logger.debug(f"Jobs matched: {result}")
         return jsonify(result)
