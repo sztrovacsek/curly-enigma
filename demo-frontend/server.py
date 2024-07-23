@@ -50,6 +50,17 @@ def get_candidate_info():
         return jsonify(f"[API error]: {e}")
 
 
+@app.route('/api/candidate_skills/', methods=['GET'])
+def get_candidate_skills():
+    try:
+        userid = request.args.get('userid')
+        response = candidate_data.get_candidate_skills(userid, simplified=True)
+        return jsonify(response)
+    except Exception as e:
+        logger.debug("Could not process the input: %s", e)
+        return jsonify(f"[API error]: {e}")
+
+
 @app.route('/api/job_suggestions/', methods=['GET'])
 def get_job_suggestions():
     userid = request.args.get('userid')
