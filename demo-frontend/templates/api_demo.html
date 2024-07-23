@@ -33,9 +33,10 @@
   <p>&nbsp;</p>
   <h4>Let's start by listing all your past experiences</h4>
   <p>For example:</p>
-  <p>
-    I don't have much work experience since I only finished high school last year. Since then, I had a part-time job in a bookshop, selling books.
-    My responsibilities were: handling the new books that arrived, sorting them and putting onto the shelf when I was asked to. This was in Lyon.</p>
+  <p style="background-color: #F6F6F6;">
+    I was working in a bookshop, part-time on the weekends and in school holidays. I was helping
+    the clients find the books that they need. I also handled the books in the storage: unpack them
+    from the boxes and put them into the inventory.</p>
   <h5>Work Experience 1</h5>
   <form>
     <div class="form-group">
@@ -54,28 +55,35 @@
       <textarea class="form-control" id="free-form-descr-e3" rows="5" placeholder="" required></textarea>
     </div>
   </form>
-  <p>&nbsp;</p>
-  <h5>Other relevant experiences outside formal work (volunteering, informal work, care work for family members, etc.)</h5>
-  <p>Mention anything that demonstrate your skills that might be relevant for an employer)</p>
   <form>
-    <div class="form-group">
-      <textarea class="form-control" id="free-form-descr-e4" rows="5" placeholder="" required></textarea>
-    </div>
+    <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-submit-candidate-input">Submit</button>
   </form>
-
-  <form>
-    <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-save-candidate-input">Save my data</button>
-  </form>
-
   <form>
     <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-identify-skills">Identify my skills</button>
+  </form>
+
+  <p>&nbsp;</p>
+  <div id="skillsContainer" style="display: none; background-color: #F8F8F8;">
+    <h4>Skills identified</h4>
+    <b>Based on what you said, we think you have the following skills</b>
+    <p> </p>
+    <div id="skillsTemplate">
+      <p class="occupationTitle">Placeholder occupation</p>
+      <li class="skillTitle">Placeholder skill1</li>
+      <p>&nbsp;</p>
+    </div>
+  </div>
+
+  <h4>Next steps</h4>
+  <p>Are you happy with the skills identified for you? You can now a) save your skills or b) find jobs matching these skills or c) redo the questionnaire</p>
+
+  <form>
+    <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-save-candidate-input">Save skills to my profile (requires login)</button>
   </form>
 
   <form>
     <button type="submit" class="btn btn-primary mb-2" style="margin-top:1em;" id="button-find-jobs">Find matching jobs</button>
   </form>
-
-  <p> </p>
 
   <div id="suggestionContainer" style="display: none; background-color: #F8F8F8;">
     <h4>Here are our suggested jobs for you</h4>
@@ -85,7 +93,6 @@
       <p >Apply here: <a class="jobLink" href="https://jobs.makesense.org/en/jobs/delta-france-association-stage-assistante-relations-institutionnelles-culture-HLD7D9ws3Sd0sQUlbqqQ?" target="_blank">link to job posting</a></p>
       <p>&nbsp;</p>
     </div>
-</p>
   </div>
 
 </div>

@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', last_update_time="Jul 17",
+    return render_template('index.html', last_update_time="Jul 22",
                            render_time=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
 
