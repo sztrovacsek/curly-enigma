@@ -1,8 +1,8 @@
 // Logic for the buttons on the form
 
-/* -------- Handling the "Save" button -------- */
+/* -------- Handling the "Submit" button -------- */
 
-const saveButton = document.getElementById('button-save-candidate-input');
+const saveButton = document.getElementById('button-submit-candidate-input');
 const inputElement1 = document.getElementById('free-form-descr-e1');
 const inputElement2 = document.getElementById('free-form-descr-e2');
 const inputElement3 = document.getElementById('free-form-descr-e3');
@@ -45,6 +45,54 @@ function post_user_input() {
   });
 };
 
+/* -------- Handling the "Skills" button -------- */
+
+const skillsButton = document.getElementById('button-identify-skills');
+
+function get_implied_skills() {
+  skillsButton.style.color = "grey";
+
+  fetch('api/candidate_skills?userid=user42', {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json' },
+  })
+  .then(response => {
+    skillsButton.style.color = "pink";
+    if (!response.ok) {
+      throw new Error('API request failed with status: ${response.status}');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Data: ' + data);
+    console.log('Content: ' + data.content);
+    show_skill_results(data.content);
+  })
+  .catch(error => {
+    console.error('Error: ', error);
+  });
+};
+
+// Add a click event listener to the button.
+skillsButton.addEventListener('click', () => {
+console.log("Skill button is clicked")
+  event.preventDefault();
+  get_implied_skills();
+});
+
+function show_skill_results(skills) {
+  const containerNode = document.getElementById('skillsContainer');
+  const skillTemplateNode = document.getElementById('skillsTemplate');
+
+  skills.skills_list.forEach(skill => {
+    console.log('Skill:' + skill);
+    const skillDiv = skillTemplateNode.cloneNode(true);
+    skillDiv.querySelector('.skillTitle').textContent = skill;
+    containerNode.appendChild(skillDiv);
+  });
+  skillTemplateNode.style.display = 'none';
+  containerNode.style.display = 'block';
+}
 
 /* -------- Handling the "Find matching jobs" button -------- */
 
@@ -88,7 +136,7 @@ function show_results(suggestion_list) {
   });
   jobTemplateNode.style.display = 'none';
   containerNode.style.display = 'block';
-  }
+}
 
 // Add a click event listener to the jobs button.
 jobsButton.addEventListener('click', () => {
