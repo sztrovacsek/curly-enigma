@@ -52,7 +52,7 @@ const skillsButton = document.getElementById('button-identify-skills');
 function get_implied_skills() {
   skillsButton.style.color = "grey";
 
-  fetch('api/candidate_skills?userid=user42', {
+  fetch('api/candidate_info/skills?userid=user42', {
     method: 'GET',
     headers: {'Content-Type': 'application/json' },
   })
@@ -65,8 +65,7 @@ function get_implied_skills() {
   })
   .then(data => {
     console.log('Data: ' + data);
-    console.log('Content: ' + data.content);
-    show_skill_results(data.content);
+    show_skill_results(data.skills);
   })
   .catch(error => {
     console.error('Error: ', error);
@@ -87,7 +86,7 @@ function show_skill_results(skills) {
   skills.skills_list.forEach(skill => {
     console.log('Skill:' + skill);
     const skillDiv = skillTemplateNode.cloneNode(true);
-    skillDiv.querySelector('.skillTitle').textContent = skill;
+    skillDiv.querySelector('.skillTitle').textContent = skill.skill_name;
     containerNode.appendChild(skillDiv);
   });
   skillTemplateNode.style.display = 'none';

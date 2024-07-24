@@ -55,24 +55,23 @@ def get_candidate_info(userid: str):
 }
 
 
-def get_candidate_skills(userid: str, simplified: bool = True):
-    if not simplified:
-        return {'content': {
-            'skills_list': skill_list,
-        }}
-    else:
-        return {
-            'content': {
-                'skills_list': [
-                    'Customer service',
-                    'Inventory management',
-                    'Communication',
-                    'Customer service',
-                ],
-            },
-            'meta': {
-                'reply_to': userid,
-                'debug': "Hardcoded"
-            }
-
+def get_candidate_skills(userid: str):
+    return {
+        'userid': userid,
+        'skills': {
+            'skills_list': [
+                {
+                    'skill_name': 'Customer service',
+                    'proficiency': 'BEGINNER'
+                },
+                {
+                    'skill_name': 'Inventory management',
+                    'proficiency': 'BEGINNER'
+                },
+                {
+                    'skill_name': 'Communication',
+                    'proficiency': 'BEGINNER'
+                },
+            ],
         }
+    }
