@@ -52,7 +52,7 @@ const skillsButton = document.getElementById('button-identify-skills');
 function get_implied_skills() {
   skillsButton.style.color = "grey";
 
-  fetch('api/candidate_info/skills?userid=user42', {
+  fetch('/api/candidate_info/skills?userid=user42', {
     method: 'GET',
     headers: {'Content-Type': 'application/json' },
   })
@@ -100,7 +100,7 @@ const jobsButton = document.getElementById('button-find-jobs');
 function get_suggested_jobs() {
   jobsButton.style.color = "grey";
 
-  fetch('api/job_suggestions', {
+  fetch('/api/job_suggestions', {
     method: 'GET',
     headers: {'Content-Type': 'application/json' },
   })

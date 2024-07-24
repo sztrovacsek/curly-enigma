@@ -35,26 +35,6 @@ skill_list = [
 ]
 
 
-def get_candidate_info(userid: str):
-    return {
-        'content': {
-            'userid': userid,
-            'occupations': {
-                ''
-                'last_updated': datetime.now(),
-            },
-            'skills': {
-                'last_updated': datetime.now(),
-                'skill_list': skill_list,
-            }
-        },
-        'meta': {
-            'reply_to': userid,
-            'debug': "Hardcoded"
-        }
-}
-
-
 def get_candidate_skills(userid: str):
     return {
         'userid': userid,
